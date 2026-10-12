@@ -1,21 +1,24 @@
 {
   "name": "profile-site",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro build && astro preview",
+    "preview": "astro preview",
     "astro": "astro",
+    "deploy": "wrangler deploy",
     "generate-types": "wrangler types",
-    "deploy": "astro build && wrangler deploy",
     "cf-typegen": "wrangler types",
-    "format": "oxfmt",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.4",
+    "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.8",
     "tailwindcss": "^4.3.3"
@@ -30,5 +33,6 @@
   },
   "engines": {
     "node": ">=22.12.0"
-  }
+  },
+  "packageManager": "pnpm@12.11.2"
 }

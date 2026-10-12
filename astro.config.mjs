@@ -2,11 +2,17 @@
 import { defineConfig, fontProviders } from 'astro/config';
 
 import cloudflare from '@astrojs/cloudflare';
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+
+import { siteConfig } from '@/constants';
 
 // https://astro.build/config
 export default defineConfig({
+  site: siteConfig.siteUrl,
+
   adapter: cloudflare(),
+
   fonts: [
     {
       cssVariable: '--font-noto-sans-jp',
@@ -16,7 +22,12 @@ export default defineConfig({
       subsets: ['latin', 'japanese'],
     },
   ],
+
   vite: {
     plugins: [tailwindcss()],
   },
+
+  integrations: [
+    sitemap({ filter: (page) => page !== new URL('/email/', siteConfig.siteUrl).toString() }),
+  ],
 });

@@ -8,7 +8,8 @@ export const siteConfig: {
 } = {
   siteName: 'だてんしのプロフィール',
   siteUrl: 'https://datenn.si/',
-  siteDefaultDescription: 'だてんし (@datenn-si) のプロフィール。',
+  siteDefaultDescription:
+    'Web フロントエンド開発やローカル画像生成を趣味でしている「だてんし」（@datenn-si）のプロフィールサイトです。',
   siteDefaultOGImagePath: '/og-image.png',
   twitterCardType: 'summary_large_image',
   twitterUserName: 'datenn_si',
@@ -24,7 +25,7 @@ export const socialLinks: {
     name: 'GitHub',
     url: 'https://github.com/datenn-si',
     iconClass: 'icon-[simple-icons--github]',
-    hexClass: 'text-black',
+    hexClass: 'text-[#181717]',
   },
   {
     name: 'X',
@@ -36,42 +37,43 @@ export const socialLinks: {
     name: 'Bluesky',
     url: 'https://bsky.app/profile/datenn.si',
     iconClass: 'icon-[simple-icons--bluesky]',
-    hexClass: 'text-[#037efa]',
+    hexClass: 'text-[#1185FE]',
   },
   {
     name: 'Hugging Face',
     url: 'https://huggingface.co/datenn-si',
-    iconClass: 'icon-[logos--hugging-face-icon]',
+    iconClass: 'icon-[simple-icons--huggingface]',
+    hexClass: 'text-[#FFD21E]',
   },
   {
     name: 'note',
     url: 'https://note.com/datenn_si',
     iconClass: 'icon-[simple-icons--note]',
-    hexClass: 'text-[#000000]',
+    hexClass: 'text-black',
   },
   {
     name: 'Qiita',
     url: 'https://qiita.com/datenn-si',
     iconClass: 'icon-[simple-icons--qiita]',
-    hexClass: 'text-[#55c500]',
+    hexClass: 'text-[#55C500]',
   },
   {
     name: 'Zenn',
     url: 'https://zenn.dev/datenn_si',
     iconClass: 'icon-[simple-icons--zenn]',
-    hexClass: 'text-[#3ea8ff]',
+    hexClass: 'text-[#3EA8FF]',
   },
   {
     name: 'YouTube',
     url: 'https://www.youtube.com/@datenn-si',
     iconClass: 'icon-[simple-icons--youtube]',
-    hexClass: 'text-[#ff0033]',
+    hexClass: 'text-[#FF0000]',
   },
   {
     name: 'pixiv',
     url: 'https://pixiv.me/datenn-si',
     iconClass: 'icon-[simple-icons--pixiv]',
-    hexClass: 'text-[#0090f6]',
+    hexClass: 'text-[#0096FA]',
   },
 ];
 

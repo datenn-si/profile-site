@@ -87,13 +87,13 @@ import { socialLinks, projects } from "@/constants";
             <p>{project.description}</p>
             <ul class="flex gap-x-2 gap-y-1 flex-wrap">
               {project.mainLang && (
-                <span class="with-icon">
+                <li class="with-icon">
                   <span
                     class="inline-block w-4 h-4 rounded-full"
                     style={{ backgroundColor: project.mainLang.color }}
                   />
                   {project.mainLang.name}
-                </span>
+                </li>
               )}
               {project.hpUrl && (
                 <li>

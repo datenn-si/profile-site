@@ -12,4 +12,11 @@
   "observability": {
     "enabled": true,
   },
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "datenn.si",
+      "custom_domain": true,
+    },
+  ],
 }
