@@ -3,11 +3,15 @@ export const siteConfig: {
   readonly siteUrl: string;
   readonly siteDefaultDescription: string;
   readonly siteDefaultOGImagePath: string;
+  readonly twitterCardType: 'summary' | 'summary_large_image';
+  readonly twitterUserName: string;
 } = {
   siteName: 'だてんしのプロフィール',
   siteUrl: 'https://datenn.si/',
   siteDefaultDescription: 'だてんし (@datenn-si) のプロフィール。',
   siteDefaultOGImagePath: '/og-image.png',
+  twitterCardType: 'summary_large_image',
+  twitterUserName: 'datenn_si',
 };
 
 export const socialLinks: {

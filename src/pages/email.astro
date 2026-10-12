@@ -5,7 +5,7 @@ import { getSecret } from "astro:env/server";
 const EMAIL_ADDRESS = getSecret("EMAIL_ADDRESS");
 ---
 
-<Layout title="メールアドレス">
+<Layout title="メールアドレス" description="だてんしの連絡用メールアドレスを記載しています。" noIndex={true}>
   <ContentBox heading="メールアドレス">
     {
       EMAIL_ADDRESS !== undefined ? (

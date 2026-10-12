@@ -2,6 +2,8 @@
 type Props = {
   title: string;
   description?: string;
+  ogImagePath?: string;
+  noIndex?: boolean;
 };
 
 import { getImage } from "astro:assets";
@@ -16,13 +18,13 @@ import Footer from "@/components/Footer.astro";
 
 const optimizedImage = await getImage({ src: myImage });
 
-const { title, description } = Astro.props;
+const { title, description, ogImagePath, noIndex } = Astro.props;
 
 const titleTemplate =
   Astro.url.pathname === "/" ? title : `${title} | ${siteConfig.siteName}`;
 ---
 
-<html lang="ja">
+<html lang="ja" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -37,6 +39,29 @@ const titleTemplate =
       name="description"
       content={description || siteConfig.siteDefaultDescription}
     />
+    <link rel="canonical" href={Astro.url.href} />
+
+    <meta property="og:site_name" content={siteConfig.siteName} />
+    <meta property="og:title" content={titleTemplate} /><meta
+      property="og:description"
+      content={description || siteConfig.siteDefaultDescription}
+    />
+    <meta
+      property="og:type"
+      content={Astro.url.pathname === "/" ? "website" : "article"}
+    />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta
+      property="og:image"
+      content={new URL(
+        ogImagePath || siteConfig.siteDefaultOGImagePath,
+        siteConfig.siteUrl,
+      )}
+    />
+    <meta name="twitter:card" content={siteConfig.twitterCardType} />
+    <meta name="twitter:site" content={`@${siteConfig.twitterUserName}`} />
+    {noIndex && <meta name="robots" content="noindex" />}
+
     <style define:vars={{ bgImg: `url(${optimizedImage.src})` }}></style>
     <Font cssVariable="--font-noto-sans-jp" />
   </head>
