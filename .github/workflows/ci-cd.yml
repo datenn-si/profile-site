@@ -71,7 +71,7 @@ jobs:
           BUILD_RESULT: ${{ steps.build.outcome }}
           DEPLOY_RESULT: ${{ steps.deploy.outcome }}
           EVENT_NAME: ${{ github.event_name }}
-          SITE_URL: https://datenn.si
+          SITE_URL: https://datenn.si/
         run: |
           status_icon() {
             case "$1" in
