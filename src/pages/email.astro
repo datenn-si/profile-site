@@ -1,0 +1,34 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ContentBox from "@/components/ContentBox.astro";
+import { getSecret } from "astro:env/server";
+const EMAIL_ADDRESS = getSecret("EMAIL_ADDRESS");
+---
+
+<Layout title="メールアドレス">
+  <ContentBox heading="メールアドレス">
+    {
+      EMAIL_ADDRESS !== undefined ? (
+        <p data-copy class="cursor-pointer hover:text-gray-700 with-icon">
+          <span class="icon-[mdi--content-copy] text-base" />
+          {EMAIL_ADDRESS}
+        </p>
+        <script src="@/assets/copy"></script>
+      ) : (
+        <p>未設定</p>
+      )
+    }
+  </ContentBox>
+  <ContentBox heading="エンドツーエンド暗号化">
+    <p>
+      datenn.si ドメインのメールアドレスは Tuta
+      によってホスティングされています。
+    </p>
+    <p>Tuta を利用することでエンドツーエンド暗号化されたやり取りができます。</p>
+  </ContentBox>
+  <a
+    href="/"
+    class="block bg-gray-800 text-gray-100 w-fit mx-auto px-4 py-2 rounded-md shadow-md hover:text-gray-300! hover:shadow-xl transition-shadow"
+    >&larr; ホームに戻る</a
+  >
+</Layout>

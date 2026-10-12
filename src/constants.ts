@@ -68,7 +68,7 @@ export const socialLinks: {
     url: 'https://pixiv.me/datenn-si',
     iconClass: 'icon-[simple-icons--pixiv]',
     hexClass: 'text-[#0090f6]',
-  }
+  },
 ];
 
 type LangMeta = {
@@ -88,7 +88,6 @@ export const langMeta: LangMeta = {
     color: '#ff5a03',
   },
 };
-
 
 export const projects: {
   readonly name: string;
