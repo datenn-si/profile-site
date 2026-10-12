@@ -83,7 +83,7 @@ jobs:
           }
 
           {
-            echo "## CI / Deployment Summary"
+            echo "## CI/CD Summary"
             echo ""
             echo "| Check | Result |"
             echo "| --- | --- |"
