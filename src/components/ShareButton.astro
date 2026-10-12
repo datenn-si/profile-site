@@ -1,0 +1,31 @@
+<button
+  type="button"
+  aria-label="このページを共有"
+  title="このページを共有"
+  class="inline-flex absolute top-10 right-2 z-10 size-10 items-center justify-center rounded-full bg-white/80 shadow-md transition-shadow hover:shadow-xl cursor-pointer"
+>
+  <span class="icon-[mdi--ios-share] text-xl" aria-hidden="true"></span>
+</button>
+
+<script>
+  const shareButtons = document.querySelectorAll<HTMLButtonElement>(
+    'button[aria-label="このページを共有"]',
+  );
+
+  for (const shareButton of shareButtons) {
+    if (!navigator.share) {
+      shareButton.classList.remove("inline-flex");
+      shareButton.classList.add("hidden");
+      continue;
+    }
+
+    shareButton.addEventListener("click", () => {
+      void navigator
+        .share({
+          title: document.title,
+          url: window.location.href,
+        })
+        .catch(() => undefined);
+    });
+  }
+</script>
