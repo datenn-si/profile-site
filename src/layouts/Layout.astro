@@ -45,6 +45,16 @@ const titleTemplate =
       <main class="flex flex-col gap-4">
         <slot />
       </main>
+      {
+        Astro.url.pathname !== "/" && (
+          <a
+            href="/"
+            class="block bg-white/80 w-fit mx-auto px-4 py-2 rounded-md shadow-md hover:shadow-xl transition-shadow"
+          >
+            &larr; ホームに戻る
+          </a>
+        )
+      }
       <Footer />
     </div>
   </body>
