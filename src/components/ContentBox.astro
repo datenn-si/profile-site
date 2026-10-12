@@ -1,0 +1,8 @@
+---
+const { heading } = Astro.props;
+---
+
+<div class="bg-white/80 px-10 py-4 rounded-lg shadow-md">
+  {heading && <h2 class="text-lg font-bold mb-1">{heading}</h2>}
+  <slot />
+</div>

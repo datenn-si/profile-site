@@ -5,3 +5,5 @@
 allowBuilds:
   esbuild: true
   workerd: true
+minimumReleaseAge: 1440
+trustPolicy: no-downgrade

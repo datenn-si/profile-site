@@ -1,0 +1,51 @@
+---
+type Props = {
+  title: string;
+  description?: string;
+};
+
+import { getImage } from "astro:assets";
+import { Font } from "astro:assets";
+
+import "@/styles/global.css";
+import { siteConfig } from "@/constants";
+import myImage from "../assets/bg.png";
+
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+
+const optimizedImage = await getImage({ src: myImage });
+
+const { title, description } = Astro.props;
+
+const titleTemplate =
+  Astro.url.pathname === "/" ? title : `${title} | ${siteConfig.siteName}`;
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{titleTemplate}</title>
+    <meta
+      name="description"
+      content={description || siteConfig.siteDefaultDescription}
+    />
+    <style define:vars={{ bgImg: `url(${optimizedImage.src})` }}></style>
+    <Font cssVariable="--font-noto-sans-jp" />
+  </head>
+  <body
+    class="bg-indigo-950 bg-(image:--bgImg) bg-cover bg-position-[top_center] font-sans text-gray-900 text-sm"
+  >
+    <div class="fixed -z-10 w-dvw h-dvh bg-black/25 backdrop-blur-lg"></div>
+    <div class="flex flex-col gap-4 pt-20 px-2 mx-auto w-full max-w-lg">
+      <Header />
+      <main class="flex flex-col gap-4">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

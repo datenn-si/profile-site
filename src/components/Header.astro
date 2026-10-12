@@ -1,0 +1,18 @@
+---
+import { Image } from "astro:assets";
+import icon from "@/assets/icon.png";
+---
+
+<header class="flex flex-col items-center justify-center gap-1 text-gray-100">
+  <Image
+    src={icon}
+    alt="だてんしのアイコン"
+    width={128}
+    height={128}
+    class="rounded-full"
+    loading="eager"
+  />
+  <h1 class="text-xl font-bold">だてんし</h1>
+  <p class="text-xs text-gray-300">@datenn-si</p>
+  <p>Web フロントエンドやローカル画像生成など</p>
+</header>

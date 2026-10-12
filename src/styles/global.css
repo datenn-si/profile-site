@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+@plugin "@iconify/tailwind4";
+
+@theme inline {
+  --font-sans: var(--font-noto-sans-jp);
+}
+
+a {
+  @apply hover:text-gray-700;
+}
+
+.with-icon {
+  @apply inline-flex items-center gap-0.5;
+}
