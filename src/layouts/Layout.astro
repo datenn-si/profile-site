@@ -67,9 +67,8 @@ const titleTemplate =
     <Font cssVariable="--font-noto-sans-jp" />
   </head>
   <body
-    class="bg-indigo-950 bg-(image:--bgImg) bg-cover bg-position-[top_center] font-sans text-gray-900 text-sm"
+    class="bg-indigo-950 bg-(image:--bgImg) bg-cover bg-no-repeat bg-position-[top_center] [@media(max-aspect-ratio:1144/1536)]:bg-size-[auto_max(100%,100dvh)] font-sans text-gray-900 text-sm"
   >
-    <div class="fixed -z-10 w-dvw h-dvh bg-black/25 backdrop-blur-lg"></div>
     <div
       class="relative flex flex-col gap-4 pt-10 px-2 mx-auto w-full max-w-lg"
     >

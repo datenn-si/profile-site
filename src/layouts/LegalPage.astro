@@ -1,0 +1,21 @@
+---
+import ContentBox from "@/components/ContentBox.astro";
+import Layout from "@/layouts/Layout.astro";
+
+type Props = {
+  frontmatter: { title: string; description: string };
+};
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description}>
+  <ContentBox>
+    <article
+      class="prose prose-sm max-w-none text-gray-900 [--tw-prose-body:var(--color-gray-900)] [--tw-prose-headings:var(--color-gray-900)] [--tw-prose-counters:var(--color-gray-900)] [--tw-prose-bullets:var(--color-gray-900)]"
+    >
+      <h1>{frontmatter.title}</h1>
+      <slot />
+    </article>
+  </ContentBox>
+</Layout>

@@ -22,16 +22,17 @@
 ```text
 ├── .github/
 │   └── workflows/
-│       └── ci-deploy.yml        # CI・ビルド・デプロイ
+│       └── ci-cd.yml        # CI・ビルド・デプロイ
 ├── public/                      # favicon、OG 画像、manifest などの公開ファイル
 ├── src/
-│   ├── assets/                  # 画像などのアセット
+│   ├── assets/                  # 画像やスクリプトなどのアセット
 │   ├── components/              # 再利用可能な UI コンポーネント
 │   │   ├── ContentBox.astro
 │   │   ├── Footer.astro
 │   │   └── Header.astro
 │   ├── layouts/
-│   │   └── Layout.astro         # 共通レイアウト
+│   │   ├── Layout.astro         # 共通レイアウト
+│   │   └── LegalPage.astro      # 法的文章 Markdown 用レイアウト
 │   ├── pages/                   # ページ定義
 │   ├── styles/                  # グローバルスタイル
 │   ├── constants.ts             # サイト設定・共通データ

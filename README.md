@@ -25,16 +25,17 @@ This is the profile site for "Datenshi" (@datenn-si).
 ```text
 ├── .github/
 │   └── workflows/
-│       └── ci-deploy.yml        # CI, build, and deployment
+│       └── ci-cd.yml        # CI, build, and deployment
 ├── public/                      # Public files such as favicon, OG images, and manifest
 ├── src/
-│   ├── assets/                  # Assets such as images
+│   ├── assets/                  # Assets such as images and scripts
 │   ├── components/              # Reusable UI components
 │   │   ├── ContentBox.astro
 │   │   ├── Footer.astro
 │   │   └── Header.astro
 │   ├── layouts/
-│   │   └── Layout.astro         # Shared layout
+│   │   ├── Layout.astro         # Shared layout
+│   │   └── LegalPage.astro      # Layout of Legal Markdown Docs
 │   ├── pages/                   # Page definitions
 │   ├── styles/                  # Global styles
 │   ├── constants.ts             # Site settings and shared data
