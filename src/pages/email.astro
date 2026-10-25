@@ -6,7 +6,8 @@ const EMAIL_ADDRESS = getSecret("EMAIL_ADDRESS");
 ---
 
 <Layout title="メールアドレス" description="だてんしの連絡用メールアドレスを記載しています。" noIndex={true}>
-  <ContentBox heading="メールアドレス">
+  <ContentBox>
+    <h1 class="text-xl font-bold pb-2">メールアドレス</h1>
     {
       EMAIL_ADDRESS !== undefined ? (
         <p data-copy class="cursor-pointer hover:text-gray-700 with-icon">

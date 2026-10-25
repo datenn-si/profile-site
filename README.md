@@ -25,7 +25,7 @@ This is the profile site for "Datenshi" (@datenn-si).
 ```text
 ├── .github/
 │   └── workflows/
-│       └── ci-cd.yml        # CI, build, and deployment
+│       └── ci-cd.yml            # CI, build, and deployment
 ├── public/                      # Public files such as favicon, OG images, and manifest
 ├── src/
 │   ├── assets/                  # Assets such as images and scripts
@@ -58,13 +58,13 @@ This is the profile site for "Datenshi" (@datenn-si).
 
 ## License
 
-The source code in this repository is provided under the GNU Affero General Public License v3.0 only (AGPL-3.0-only). For details, see the `LICENSE` file in the repository root.
+The source code in this repository is provided under the GNU Affero General Public License v3.0 only (AGPL-3.0-only). For details, see the [`LICENSE.txt`](./LICENSE.txt) file in the repository root.
 
 However, the following content is not included within the scope of AGPL-3.0-only, and all rights are separately reserved:
 
 - The "datenn-si" icon, background images, OG images, and other image or non-code visual assets
 - All files in the `resource/` directory
-- Biographical text, profile information, SNS links, and other personal content related to "datenn-si"
+- Biographical text, profile information, SNS links, and other personal content related to "Datenshi"
 
 No permission to use these contents is granted under AGPL-3.0-only. If you wish to use, copy, modify, redistribute, or otherwise handle these contents, you must obtain separate permission from the respective rights holders.
 

@@ -1,27 +1,53 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import ContentBox from "@/components/ContentBox.astro";
-import { socialLinks, projects } from "@/constants";
+import { socialLinks, techStack, projects } from "@/constants";
+
+import blogIcon from "@/assets/icon.png";
+import { Image } from "astro:assets";
 ---
 
 <Layout title="だてんし">
   <ContentBox>
-    <ul class="grid grid-cols-3 gap-4 max-w-72 mx-auto">
+    <ul class="grid grid-cols-3 gap-4 min-[445px]:grid-cols-4">
+      <li class="hover:scale-105 hover:opacity-90 transition-[scale,opacity]">
+        <a
+          href="https://blog.datenn.si/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex flex-col items-center justify-center gap-1"
+        >
+          <div
+            class="bg-white p-4 rounded-lg flex items-center justify-center shadow-md"
+          >
+            <Image
+              src={blogIcon}
+              alt="blog.datenn.si の favicon"
+              width={30}
+              height={30}
+              class="rounded-sm shrink-0"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+          <span class="text-xs text-center">ブログ</span>
+        </a>
+      </li>
       {
         socialLinks.map((link) => (
-          <li>
+          <li class="hover:scale-105 hover:opacity-90 transition-[scale,opacity]">
             <a
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="flex flex-col items-center justify-center gap-1 hover:scale-110 transition-transform"
+              class="flex flex-col items-center justify-center gap-1"
             >
               <div class="bg-white p-4 rounded-lg flex items-center justify-center shadow-md">
                 <span
                   class={`text-3xl ${link.hexClass || ""} ${link.iconClass}`}
                 />
               </div>
-              <span class="text-xs text-gray-800 text-center">{link.name}</span>
+              <span class="text-xs text-center">{link.name}</span>
             </a>
           </li>
         ))
@@ -33,6 +59,20 @@ import { socialLinks, projects } from "@/constants";
       フロントエンドは Astro.js や Tailwind CSS が得意です。ローカル画像生成には
       SD WebUI Forge Neo を使っています。
     </p>
+  </ContentBox>
+  <ContentBox heading="Tech Stack">
+    <ul class="flex flex-wrap gap-2">
+      {
+        techStack.map((item) => (
+          <li class="bg-white px-3 py-2 rounded-lg flex items-center shadow-md gap-2">
+            <span class="icon-backing">
+              <span class={`text-xl ${item.hexClass} ${item.iconClass}`} />
+            </span>
+            <span class="text-sm">{item.name}</span>
+          </li>
+        ))
+      }
+    </ul>
   </ContentBox>
   <ContentBox heading="連絡先">
     <p>

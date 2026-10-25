@@ -13,7 +13,13 @@ import icon from "@/assets/icon.png";
     loading="eager"
     fetchpriority="high"
   />
-  <h1 class="text-xl font-bold">だてんし</h1>
-  <p class="text-xs text-gray-300">@datenn-si</p>
+  {
+    Astro.url.pathname === "/" ? (
+      <h1 class="text-xl font-bold">だてんし</h1>
+    ) : (
+      <p class="text-xl font-bold">だてんし</p>
+    )
+  }
+  <p class="text-xs text-gray-300">@datenn-si / @datenn_si</p>
   <p>Web フロントエンドやローカル画像生成など</p>
 </header>

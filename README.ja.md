@@ -22,7 +22,7 @@
 ```text
 ├── .github/
 │   └── workflows/
-│       └── ci-cd.yml        # CI・ビルド・デプロイ
+│       └── ci-cd.yml            # CI・ビルド・デプロイ
 ├── public/                      # favicon、OG 画像、manifest などの公開ファイル
 ├── src/
 │   ├── assets/                  # 画像やスクリプトなどのアセット
@@ -55,7 +55,7 @@
 
 ## ライセンス
 
-本リポジトリ内のソースコードは、GNU Affero General Public License v3.0 only（AGPL-3.0-only）の下で提供されています。詳細は、リポジトリルートの `LICENSE` ファイルを参照してください。
+本リポジトリ内のソースコードは、GNU Affero General Public License v3.0 only（AGPL-3.0-only）の下で提供されています。詳細は、リポジトリルートの [`LICENSE.txt`](./LICENSE.txt) ファイルを参照してください。
 
 ただし、以下のコンテンツは AGPL-3.0-only の適用対象に含まれず、別途権利が留保されています。
 

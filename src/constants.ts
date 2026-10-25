@@ -42,8 +42,12 @@ export const socialLinks: {
   {
     name: 'Hugging Face',
     url: 'https://huggingface.co/datenn-si',
-    iconClass: 'icon-[simple-icons--huggingface]',
-    hexClass: 'text-[#FFD21E]',
+    iconClass: 'icon-[thesvg-color--hugging-face]',
+  },
+  {
+    name: 'Civitai',
+    url: 'https://civitai.red/user/datenn_si',
+    iconClass: 'icon-[thesvg-color--civitai]',
   },
   {
     name: 'note',
@@ -77,6 +81,32 @@ export const socialLinks: {
   },
 ];
 
+export const techStack: {
+  readonly name: string;
+  readonly iconClass: string;
+  readonly hexClass: string;
+}[] = [
+  { name: 'HTML', iconClass: 'icon-[simple-icons--html5]', hexClass: 'text-[#E34F26]' },
+  { name: 'CSS', iconClass: 'icon-[simple-icons--css3]', hexClass: 'text-[#1572B6]' },
+  { name: 'JavaScript', iconClass: 'icon-[simple-icons--javascript]', hexClass: 'text-[#F7DF1E]' },
+  { name: 'TypeScript', iconClass: 'icon-[simple-icons--typescript]', hexClass: 'text-[#3178C6]' },
+  { name: 'Astro.js', iconClass: 'icon-[simple-icons--astro]', hexClass: 'text-[#BC52EE]' },
+  {
+    name: 'TailwindCSS',
+    iconClass: 'icon-[simple-icons--tailwindcss]',
+    hexClass: 'text-[#06B6D4]',
+  },
+  { name: 'Python', iconClass: 'icon-[simple-icons--python]', hexClass: 'text-[#3776AB]' },
+  {
+    name: 'Cloudflare Workers',
+    iconClass: 'icon-[simple-icons--cloudflareworkers]',
+    hexClass: 'text-[#F38020]',
+  },
+  { name: 'pnpm', iconClass: 'icon-[simple-icons--pnpm]', hexClass: 'text-[#F69220]' },
+  { name: 'Git', iconClass: 'icon-[simple-icons--git]', hexClass: 'text-[#F05032]' },
+  { name: 'GitHub', iconClass: 'icon-[simple-icons--github]', hexClass: 'text-[#181717]' },
+];
+
 type LangMeta = {
   readonly [key: string]: {
     readonly name: string;
@@ -107,6 +137,13 @@ export const projects: {
     description: 'このサイトです。',
     hpUrl: 'https://datenn.si/',
     repoUrl: 'https://github.com/datenn-si/profile-site',
+    mainLang: langMeta.astrojs,
+  },
+  {
+    name: 'blog',
+    description: 'だてんしの個人ブログ',
+    hpUrl: 'https://blog.datenn.si/',
+    repoUrl: 'https://github.com/datenn-si/blog',
     mainLang: langMeta.astrojs,
   },
   {
