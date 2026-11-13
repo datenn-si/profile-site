@@ -1,6 +1,7 @@
 # profile-site
 
-[![CI/CD](https://github.com/datenn-si/profile-site/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/datenn-si/profile-site/actions/workflows/ci-cd.yml)
+[![CI](https://github.com/datenn-si/profile-site/actions/workflows/ci.yml/badge.svg)](https://github.com/datenn-si/profile-site/actions/workflows/ci.yml)
+[![Deploy](https://github.com/datenn-si/profile-site/actions/workflows/deploy.yml/badge.svg)](https://github.com/datenn-si/profile-site/actions/workflows/deploy.yml)
 
 [ [English](README.md) | 日本語 ]
 
@@ -22,7 +23,8 @@
 ```text
 ├── .github/
 │   └── workflows/
-│       └── ci-cd.yml            # CI・ビルド・デプロイ
+│       ├── ci.yml               # Pull request 時の lint・format・build
+│       └── deploy.yml           # main push 時の build・deploy
 ├── public/                      # favicon、OG 画像、manifest などの公開ファイル
 ├── src/
 │   ├── assets/                  # 画像やスクリプトなどのアセット
@@ -51,7 +53,8 @@
 
 - コミット前に lint と format 、ビルド を行う
   - 今のところは Husky + lint-staged を導入していません
-- CI によっても同様にチェックを行う
+- `main` への Pull request では CI が lint・format・build を実行する (`.github/workflows/ci.yml`)
+- `main` への push では build 後に Cloudflare Workers へデプロイする (`.github/workflows/deploy.yml`)
 
 ## ライセンス
 

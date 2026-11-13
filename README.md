@@ -1,6 +1,7 @@
 # profile-site
 
-[![CI/CD](https://github.com/datenn-si/profile-site/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/datenn-si/profile-site/actions/workflows/ci-cd.yml)
+[![CI](https://github.com/datenn-si/profile-site/actions/workflows/ci.yml/badge.svg)](https://github.com/datenn-si/profile-site/actions/workflows/ci.yml)
+[![Deploy](https://github.com/datenn-si/profile-site/actions/workflows/deploy.yml/badge.svg)](https://github.com/datenn-si/profile-site/actions/workflows/deploy.yml)
 
 [ English | [日本語](README.ja.md) ]
 
@@ -25,7 +26,8 @@ This is the profile site for "Datenshi" (@datenn-si).
 ```text
 ├── .github/
 │   └── workflows/
-│       └── ci-cd.yml            # CI, build, and deployment
+│       ├── ci.yml               # Lint, format, and build on pull requests
+│       └── deploy.yml           # Build and deploy on push to main
 ├── public/                      # Public files such as favicon, OG images, and manifest
 ├── src/
 │   ├── assets/                  # Assets such as images and scripts
@@ -54,7 +56,8 @@ This is the profile site for "Datenshi" (@datenn-si).
 
 - Run lint, format, and build before committing.
   - Husky and lint-staged are not currently used.
-- CI also runs the same checks.
+- Pull requests to `main` run CI: lint, format, and build (`.github/workflows/ci.yml`).
+- Pushes to `main` build and deploy to Cloudflare Workers (`.github/workflows/deploy.yml`).
 
 ## License
 
