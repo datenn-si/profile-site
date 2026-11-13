@@ -1,8 +1,6 @@
-name: CI/CD
+name: CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -10,9 +8,9 @@ permissions:
   contents: read
 
 jobs:
-  deploy:
-    name: CI/CD
-    runs-on: ubuntu-latest
+  ci:
+    name: CI
+    runs-on: ubuntu-slim
 
     steps:
       - name: Checkout repository
@@ -40,28 +38,9 @@ jobs:
         id: format
         run: pnpm fmt:check
 
-      - name: Create .env file
-        run: |
-          umask 077
-          printf 'EMAIL_ADDRESS=%s\n' "$EMAIL_ADDRESS" > .env
-        env:
-          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
-
       - name: Build
         id: build
         run: pnpm build
-
-      - name: Remove .env file
-        if: ${{ always() }}
-        run: rm -f .env
-
-      - name: Deploy to Cloudflare Workers
-        id: deploy
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: pnpm deploy
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Write job summary
         if: always()
@@ -69,9 +48,6 @@ jobs:
           LINT_RESULT: ${{ steps.lint.outcome }}
           FORMAT_RESULT: ${{ steps.format.outcome }}
           BUILD_RESULT: ${{ steps.build.outcome }}
-          DEPLOY_RESULT: ${{ steps.deploy.outcome }}
-          EVENT_NAME: ${{ github.event_name }}
-          SITE_URL: https://datenn.si/
         run: |
           status_icon() {
             case "$1" in
@@ -83,19 +59,11 @@ jobs:
           }
 
           {
-            echo "## CI/CD Summary"
+            echo "## CI Summary"
             echo ""
             echo "| Check | Result |"
             echo "| --- | --- |"
             echo "| Oxlint | $(status_icon "${LINT_RESULT:-}") |"
             echo "| Oxfmt | $(status_icon "${FORMAT_RESULT:-}") |"
             echo "| Astro build | $(status_icon "${BUILD_RESULT:-}") |"
-            echo "| Cloudflare deploy | $(status_icon "${DEPLOY_RESULT:-}") |"
-            echo ""
-            if [[ "$EVENT_NAME" == "push" && "$DEPLOY_RESULT" == "success" ]]; then
-              echo "### Production"
-              echo ""
-              echo "[${SITE_URL}](${SITE_URL})"
-              echo ""
-            fi
           } >> "$GITHUB_STEP_SUMMARY"
