@@ -1,4 +1,5 @@
 const copyableElms = document.querySelectorAll('[data-copy]') as NodeListOf<HTMLElement>;
+const copiedMessage = document.documentElement.dataset.copied ?? '';
 copyableElms.forEach((elm) => {
   elm.addEventListener('click', () => {
     const textToCopy = elm.textContent;
@@ -11,7 +12,7 @@ copyableElms.forEach((elm) => {
           'class',
           'fixed w-max with-icon bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-gray-100 px-4 py-2 rounded shadow-lg transition-opacity duration-300 opacity-0',
         );
-        toast.innerHTML = `<span class="icon-[mdi--check-circle-outline] text-base"></span>コピーしました`;
+        toast.innerHTML = `<span class="icon-[mdi--check-circle-outline] text-base"></span>${copiedMessage}`;
         if (!toast) return;
         document.body.appendChild(toast);
         toast.classList.remove('opacity-0');

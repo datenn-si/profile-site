@@ -1,12 +1,17 @@
 ---
 import { Image } from "astro:assets";
 import icon from "@/assets/icon.png";
+import { copy, localeFrom, unlocalizedPath } from "@/i18n";
+
+const locale = localeFrom(Astro.currentLocale);
+const t = copy[locale];
+const isHome = unlocalizedPath(Astro.url.pathname) === "/";
 ---
 
 <header class="flex flex-col items-center justify-center gap-1 text-gray-100">
   <Image
     src={icon}
-    alt="だてんしのアイコン"
+    alt={t.iconAlt}
     width={128}
     height={128}
     class="rounded-full"
@@ -14,12 +19,12 @@ import icon from "@/assets/icon.png";
     fetchpriority="high"
   />
   {
-    Astro.url.pathname === "/" ? (
-      <h1 class="text-xl font-bold">だてんし</h1>
+    isHome ? (
+      <h1 class="text-xl font-bold">{t.name}</h1>
     ) : (
-      <p class="text-xl font-bold">だてんし</p>
+      <p class="text-xl font-bold">{t.name}</p>
     )
   }
   <p class="text-xs text-gray-300">@datenn-si / @datenn_si</p>
-  <p>Web フロントエンドやローカル画像生成など</p>
+  <p>{t.tagline}</p>
 </header>

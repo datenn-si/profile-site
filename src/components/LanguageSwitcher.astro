@@ -1,0 +1,36 @@
+---
+import { copy, localeFrom, localeUrl } from "@/i18n";
+
+const locale = localeFrom(Astro.currentLocale);
+const t = copy[locale];
+const pathname = Astro.url.pathname;
+---
+
+<details class="absolute top-10 right-2 z-10">
+  <summary
+    aria-label={t.changeLanguage}
+    title={t.changeLanguage}
+    class="flex size-10 cursor-pointer list-none items-center justify-center rounded-full bg-white/80 shadow-md transition-shadow hover:shadow-xl"
+  >
+    <span class="icon-[mdi--language] text-xl" aria-hidden="true"></span>
+  </summary>
+  <nav
+    aria-label={t.language}
+    class="absolute right-0 top-full mt-1 flex min-w-32 flex-col rounded-md bg-white py-1 shadow-xl"
+  >
+    <a
+      href={localeUrl("ja", pathname)}
+      lang="ja"
+      hreflang="ja"
+      aria-current={locale === "ja" ? "page" : undefined}
+      class="px-3 py-2 hover:bg-gray-100">日本語</a
+    >
+    <a
+      href={localeUrl("en", pathname)}
+      lang="en"
+      hreflang="en"
+      aria-current={locale === "en" ? "page" : undefined}
+      class="px-3 py-2 hover:bg-gray-100">English</a
+    >
+  </nav>
+</details>

@@ -5,11 +5,19 @@ import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-import { siteConfig } from '@/constants';
+import { defaultLocale, locales, siteConfig } from '@/constants';
 
 // https://astro.build/config
 export default defineConfig({
   site: siteConfig.siteUrl,
+
+  i18n: {
+    defaultLocale,
+    locales: [...locales],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 
   adapter: cloudflare(),
 
@@ -25,12 +33,20 @@ export default defineConfig({
 
   vite: {
     build: {
-      assetsInlineLimit: 1,
+      assetsInlineLimit: (filePath) => (/\.(?:m?js)$/.test(filePath) ? false : undefined),
     },
     plugins: [tailwindcss()],
   },
 
   integrations: [
-    sitemap({ filter: (page) => page !== new URL('/email/', siteConfig.siteUrl).toString() }),
+    sitemap({
+      filter: (page) => !new URL(page).pathname.replace(/\/$/, '').endsWith('/email'),
+      i18n: {
+        defaultLocale,
+        locales: Object.fromEntries(
+          locales.map((locale) => [locale, siteConfig.locales[locale].lang]),
+        ),
+      },
+    }),
   ],
 });

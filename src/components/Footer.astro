@@ -1,5 +1,8 @@
 ---
+import { copy, localeFrom, localeUrl } from "@/i18n";
 
+const locale = localeFrom(Astro.currentLocale);
+const t = copy[locale];
 ---
 
 <footer
@@ -9,7 +12,9 @@
     <span class="inline-flex items-center gap-0.5">
       Made with <span class="icon-[mdi--heart] text-base"></span>
     </span>
-    <a href="/privacy" class="hover:text-gray-300!">プライバシーポリシー</a>
+    <a href={localeUrl(locale, "/privacy")} class="hover:text-gray-300!">
+      {t.privacy}
+    </a>
     <a
       href="https://github.com/datenn-si/profile-site"
       target="_blank"
@@ -19,5 +24,5 @@
       Source Code
     </a>
   </div>
-  <small class="text-xs">&copy; 2026 だてんし</small>
+  <small class="text-xs">&copy; 2026 {t.name}</small>
 </footer>
