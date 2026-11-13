@@ -1,19 +1,48 @@
+export const defaultLocale = 'ja' as const;
+export const locales = ['ja', 'en'] as const;
+export type Locale = (typeof locales)[number];
+
 export const siteConfig: {
-  readonly siteName: string;
   readonly siteUrl: string;
-  readonly siteDefaultDescription: string;
   readonly siteDefaultOGImagePath: string;
   readonly twitterCardType: 'summary' | 'summary_large_image';
   readonly twitterUserName: string;
+  readonly locales: {
+    readonly ja: {
+      readonly lang: 'ja';
+      readonly siteName: string;
+      readonly siteDefaultDescription: string;
+      readonly appTitle: string;
+    };
+    readonly en: {
+      readonly lang: 'en';
+      readonly siteName: string;
+      readonly siteDefaultDescription: string;
+      readonly appTitle: string;
+    };
+  };
 } = {
-  siteName: 'だてんしのプロフィール',
   siteUrl: 'https://datenn.si/',
-  siteDefaultDescription:
-    'Web フロントエンド開発やローカル画像生成を趣味でしている「だてんし」（@datenn-si）のプロフィールサイトです。',
   siteDefaultOGImagePath: '/og-image.png',
   twitterCardType: 'summary_large_image',
   twitterUserName: 'datenn_si',
-};
+  locales: {
+    ja: {
+      lang: 'ja',
+      siteName: 'だてんしのプロフィール',
+      siteDefaultDescription:
+        'Web フロントエンド開発やローカル画像生成を趣味でしている「だてんし」（@datenn-si）のプロフィールサイトです。',
+      appTitle: 'だてんし',
+    },
+    en: {
+      lang: 'en',
+      siteName: "Datenshi's Profile",
+      siteDefaultDescription:
+        'The profile website of Datenshi (@datenn-si), a hobbyist in web frontend development and local image generation.',
+      appTitle: 'Datenshi',
+    },
+  },
+} as const;
 
 export const socialLinks: {
   readonly name: string;
@@ -46,7 +75,7 @@ export const socialLinks: {
   },
   {
     name: 'Civitai',
-    url: 'https://civitai.red/user/datenn_si',
+    url: 'https://civitai.com/user/datenn_si',
     iconClass: 'icon-[thesvg-color--civitai]',
   },
   {
@@ -119,49 +148,84 @@ export const langMeta: LangMeta = {
     name: 'JavaScript',
     color: '#f1e05a',
   },
+  typescript: {
+    name: 'TypeScript',
+    color: '#3178c6',
+  },
   astrojs: {
     name: 'Astro.js',
     color: '#ff5a03',
+  },
+  python: {
+    name: 'Python',
+    color: '#3572a5',
   },
 };
 
 export const projects: {
   readonly name: string;
-  readonly description?: string;
+  readonly description: Readonly<Record<Locale, string>>;
   readonly hpUrl?: string;
   readonly repoUrl?: string;
   readonly mainLang?: LangMeta[keyof LangMeta];
 }[] = [
   {
     name: 'profile-site',
-    description: 'このサイトです。',
+    description: { ja: 'このサイトです。', en: 'This website.' },
     hpUrl: 'https://datenn.si/',
     repoUrl: 'https://github.com/datenn-si/profile-site',
     mainLang: langMeta.astrojs,
   },
   {
     name: 'blog',
-    description: 'だてんしの個人ブログ',
+    description: { ja: 'だてんしの個人ブログ', en: "Datenshi's personal blog." },
     hpUrl: 'https://blog.datenn.si/',
     repoUrl: 'https://github.com/datenn-si/blog',
-    mainLang: langMeta.astrojs,
+    mainLang: langMeta.typescript,
+  },
+  {
+    name: 'sd-webui-agent-relay',
+    description: {
+      ja: 'Forge Neo API の前段に置くリレーです。',
+      en: 'A relay that sits in front of the Forge Neo API.',
+    },
+    repoUrl: 'https://github.com/datenn-si/sd-webui-agent-relay',
+    mainLang: langMeta.python,
   },
   {
     name: 'sd-webui-gpu-monitor',
-    description: 'SD WebUI Forge Neo 向けの軽量な GPU 監視オーバーレイ',
+    description: {
+      ja: 'SD WebUI Forge Neo 向けの軽量な GPU 監視オーバーレイ',
+      en: 'A lightweight GPU monitoring overlay for SD WebUI Forge Neo.',
+    },
     repoUrl: 'https://github.com/datenn-si/sd-webui-gpu-monitor',
     mainLang: langMeta.javascript,
   },
   {
     name: 'sd-webui-danbooru-importer',
-    description: 'SD WebUI Forge Neo 向けの Danbooru タグインポーター',
+    description: {
+      ja: 'SD WebUI Forge Neo 向けの Danbooru タグインポーター',
+      en: 'A Danbooru tag importer for SD WebUI Forge Neo.',
+    },
     repoUrl: 'https://github.com/datenn-si/sd-webui-danbooru-importer',
     mainLang: langMeta.javascript,
   },
   {
     name: 'sd-webui-custom-colorpicker',
-    description: 'SD WebUI Forge Neo 向けのカスタムカラーピッカー',
+    description: {
+      ja: 'SD WebUI Forge Neo 向けのカスタムカラーピッカー',
+      en: 'A custom color picker for SD WebUI Forge Neo.',
+    },
     repoUrl: 'https://github.com/datenn-si/sd-webui-custom-colorpicker',
     mainLang: langMeta.javascript,
+  },
+  {
+    name: 'youtube-hidden-tags-viewer',
+    description: {
+      ja: 'YouTube動画に設定された「隠しタグ」を概要欄の下に表示するユーザースクリプトです。',
+      en: 'A userscript that displays the hidden tags set on a YouTube video below the description.',
+    },
+    repoUrl: 'https://github.com/datenn-si/youtube-hidden-tags-viewer',
+    mainLang: langMeta.typescript,
   },
 ];

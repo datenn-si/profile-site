@@ -7,9 +7,6 @@
 
 This is the profile site for "Datenshi" (@datenn-si).
 
-> [!NOTE]
-> The website content is written in Japanese only.
-
 ## Frameworks and Technologies Used (Excerpt)
 
 - Astro.js

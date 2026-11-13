@@ -1,0 +1,171 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ContentBox from "@/components/ContentBox.astro";
+import { socialLinks, techStack, projects } from "@/constants";
+import { copy, localeFrom, localeUrl, localizeSiteHref } from "@/i18n";
+
+import blogIcon from "@/assets/icon.png";
+import { Image } from "astro:assets";
+
+const locale = localeFrom(Astro.currentLocale);
+const t = copy[locale];
+---
+
+<Layout title={t.name}>
+  <ContentBox>
+    <ul class="grid grid-cols-3 gap-4 min-[445px]:grid-cols-4">
+      <li class="hover:scale-105 hover:opacity-90 transition-[scale,opacity]">
+        <a
+          href="https://blog.datenn.si/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex flex-col items-center justify-center gap-1"
+        >
+          <div
+            class="bg-white p-4 rounded-lg flex items-center justify-center shadow-md"
+          >
+            <Image
+              src={blogIcon}
+              alt={t.blogAlt}
+              width={30}
+              height={30}
+              class="rounded-sm shrink-0"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+          <span class="text-xs text-center">{t.blogLabel}</span>
+        </a>
+      </li>
+      {
+        socialLinks.map((link) => (
+          <li class="hover:scale-105 hover:opacity-90 transition-[scale,opacity]">
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex flex-col items-center justify-center gap-1"
+            >
+              <div class="bg-white p-4 rounded-lg flex items-center justify-center shadow-md">
+                <span
+                  class={`text-3xl ${link.hexClass || ""} ${link.iconClass}`}
+                />
+              </div>
+              <span class="text-xs text-center">{link.name}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </ContentBox>
+  <ContentBox heading={t.aboutHeading}>
+    <p>{t.aboutBody}</p>
+  </ContentBox>
+  <ContentBox heading="Tech Stack">
+    <ul class="flex flex-wrap gap-2">
+      {
+        techStack.map((item) => (
+          <li class="bg-white px-3 py-2 rounded-lg flex items-center shadow-md gap-2">
+            <span class="icon-backing">
+              <span class={`text-xl ${item.hexClass} ${item.iconClass}`} />
+            </span>
+            <span class="text-sm">{item.name}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </ContentBox>
+  <ContentBox heading={t.contactHeading}>
+    <p>
+      {t.contactBefore}<a
+        href="https://x.com/datenn_si"
+        target="_blank"
+        rel="noopener noreferrer">X</a
+      >{t.contactMid}<a
+        href="https://bsky.app/profile/datenn.si"
+        target="_blank"
+        rel="noopener noreferrer">Bluesky</a
+      >{t.contactAfter}
+    </p>
+    <ul>
+      <li>
+        {t.emailLabel}<a href={localeUrl(locale, "/email")}>{t.viewEmail}</a>
+      </li>
+      <li>
+        Discord: <a
+          href="https://discord.com/users/1554737723154235487"
+          target="_blank"
+          rel="noopener noreferrer">datenn.si</a
+        >
+      </li>
+      <li class="flex items-center gap-0.5">
+        <span>Signal:</span><span
+          data-copy
+          class="cursor-pointer hover:text-gray-700 with-icon"
+          ><span class="icon-[mdi--content-copy] text-base"
+          ></span>@datenn.40</span
+        >
+      </li>
+      <li class="flex items-center gap-0.5">
+        <span>Session:</span><span
+          data-copy
+          class="with-icon w-[calc(100%-3rem)] cursor-pointer hover:text-gray-700"
+          ><span class="icon-[mdi--content-copy] text-base"></span><span
+            class="w-[calc(100%-1.25rem)] overflow-x-clip text-ellipsis"
+            >05eb9410b24269af57679d15e86cdb7a551ded3bd37cf3a60342327fca97a1571f</span
+          ></span
+        >
+      </li>
+    </ul>
+    <script src="@/scripts/copy"></script>
+  </ContentBox>
+  <ContentBox heading={t.projectsHeading}>
+    <ul class="flex flex-col gap-2">
+      {
+        projects.map((project) => (
+          <li class="bg-white px-4 py-2 rounded-lg flex flex-col shadow-md gap-1">
+            <h3 class="font-bold">{project.name}</h3>
+            <p>{project.description[locale]}</p>
+            <ul class="flex gap-x-2 gap-y-1 flex-wrap">
+              {project.mainLang && (
+                <li class="with-icon">
+                  <span
+                    class="inline-block w-4 h-4 rounded-full"
+                    style={{ backgroundColor: project.mainLang.color }}
+                  />
+                  {project.mainLang.name}
+                </li>
+              )}
+              {project.hpUrl && (
+                <li>
+                  <a
+                    href={localizeSiteHref(locale, project.hpUrl)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="with-icon"
+                  >
+                    <span class="icon-[mdi--open-in-new] text-base align-middle" />
+                    HP
+                  </a>
+                </li>
+              )}
+              {project.repoUrl && (
+                <li>
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="with-icon"
+                  >
+                    <span class="icon-[mdi--open-in-new] text-base align-middle" />
+                    {t.repository}
+                  </a>
+                </li>
+              )}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </ContentBox>
+</Layout>

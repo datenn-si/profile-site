@@ -11,46 +11,67 @@ import { Font } from "astro:assets";
 
 import "@/styles/global.css";
 import { siteConfig } from "@/constants";
+import { copy, localeAbsoluteUrl, localeFrom, localeUrl, unlocalizedPath } from "@/i18n";
 import myImage from "../assets/bg.png";
 
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import ShareButton from "@/components/ShareButton.astro";
+import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
 
 const optimizedImage = await getImage({ src: myImage });
 
 const { title, description, ogImagePath, noIndex } = Astro.props;
 
-const titleTemplate =
-  Astro.url.pathname === "/" ? title : `${title} | ${siteConfig.siteName}`;
+const locale = localeFrom(Astro.currentLocale);
+const t = copy[locale];
+const localeConfig = siteConfig.locales[locale];
+const localizedPath = unlocalizedPath(Astro.url.pathname);
+const alternateUrls = {
+  ja: localeAbsoluteUrl("ja", localizedPath),
+  en: localeAbsoluteUrl("en", localizedPath),
+};
+const isHome = localizedPath === "/";
+const pageName = localeConfig.siteName;
+const pageDescription = description || localeConfig.siteDefaultDescription;
+const titleTemplate = isHome ? title : `${title} | ${pageName}`;
 ---
 
-<html lang="ja" prefix="og: https://ogp.me/ns#">
+<html
+  lang={localeConfig.lang}
+  data-copied={t.copied}
+  prefix="og: https://ogp.me/ns#"
+>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="だてんし" />
+    <meta name="apple-mobile-web-app-title" content={localeConfig.appTitle} />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{titleTemplate}</title>
-    <meta
-      name="description"
-      content={description || siteConfig.siteDefaultDescription}
-    />
+    <meta name="description" content={pageDescription} />
     <link rel="canonical" href={Astro.url.href} />
+    <link
+      rel="alternate"
+      hreflang={siteConfig.locales.ja.lang}
+      href={alternateUrls.ja}
+    />
+    <link
+      rel="alternate"
+      hreflang={siteConfig.locales.en.lang}
+      href={alternateUrls.en}
+    />
+    <link rel="alternate" hreflang="x-default" href={alternateUrls.ja} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <meta property="og:site_name" content={siteConfig.siteName} />
+    <meta property="og:site_name" content={pageName} />
     <meta property="og:title" content={titleTemplate} /><meta
       property="og:description"
-      content={description || siteConfig.siteDefaultDescription}
+      content={pageDescription}
     />
-    <meta
-      property="og:type"
-      content={Astro.url.pathname === "/" ? "website" : "article"}
-    />
+    <meta property="og:type" content={isHome ? "website" : "article"} />
     <meta property="og:url" content={Astro.url.href} />
     <meta
       property="og:image"
@@ -73,17 +94,20 @@ const titleTemplate =
       class="relative flex flex-col gap-4 pt-10 px-2 mx-auto w-full max-w-lg"
     >
       <ShareButton />
+      <LanguageSwitcher />
       <Header />
       <main class="flex flex-col gap-4">
         <slot />
       </main>
       {
-        Astro.url.pathname !== "/" && (
+        !isHome && (
           <a
-            href="/"
+            href={localeUrl(locale, "/")}
             class="block bg-white/80 w-fit mx-auto px-4 py-2 rounded-md shadow-md hover:shadow-xl transition-shadow"
           >
-            &larr; ホームに戻る
+            <span aria-hidden="true">&larr;</span>
+            {" "}
+            {t.backHome}
           </a>
         )
       }

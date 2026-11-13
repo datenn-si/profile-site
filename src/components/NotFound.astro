@@ -1,0 +1,13 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ContentBox from "@/components/ContentBox.astro";
+import { copy, localeFrom } from "@/i18n";
+
+const t = copy[localeFrom(Astro.currentLocale)];
+---
+
+<Layout title="404 Not Found" description={t.notFound}>
+  <ContentBox heading="404 Not Found">
+    <p>{t.notFound}</p>
+  </ContentBox>
+</Layout>

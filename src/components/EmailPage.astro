@@ -1,0 +1,30 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ContentBox from "@/components/ContentBox.astro";
+import { copy, localeFrom } from "@/i18n";
+import { getSecret } from "astro:env/server";
+
+const EMAIL_ADDRESS = getSecret("EMAIL_ADDRESS");
+const t = copy[localeFrom(Astro.currentLocale)];
+---
+
+<Layout title={t.emailTitle} description={t.emailDescription} noIndex={true}>
+  <ContentBox>
+    <h1 class="text-xl font-bold pb-2">{t.emailTitle}</h1>
+    {
+      EMAIL_ADDRESS !== undefined ? (
+        <p data-copy class="cursor-pointer hover:text-gray-700 with-icon">
+          <span class="icon-[mdi--content-copy] text-base" />
+          {EMAIL_ADDRESS}
+        </p>
+        <script src="@/scripts/copy"></script>
+      ) : (
+        <p>{t.emailMissing}</p>
+      )
+    }
+  </ContentBox>
+  <ContentBox heading={t.encryptionHeading}>
+    <p>{t.encryptionHosted}</p>
+    <p>{t.encryptionDetail}</p>
+  </ContentBox>
+</Layout>
